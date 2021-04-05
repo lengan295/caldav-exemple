@@ -16,7 +16,10 @@ date_default_timezone_set('Canada/Eastern');
 // $baseUri = '/';
 
 /* Database */
-$pdo = new PDO('sqlite:data/db.sqlite');
+$bdname = "dav";
+$dbuser = "root";
+$dbpass = "root";
+$pdo = new PDO('mysql:dbname='.$bdname.';host=127.0.0.1', $dbuser, $dbpass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Files we need
@@ -72,4 +75,4 @@ $browser = new Sabre\DAV\Browser\Plugin();
 $server->addPlugin($browser);
 
 // And off we go!
-$server->start();
+$server->exec();
